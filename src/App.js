@@ -3,10 +3,17 @@ import Login from "./Components/Login/Login";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Chat from "./Components/Chat/Chat";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
+} from "react-router-dom";
+import { useStateValue } from "./Redux/StateProvider";
+import LoginGoogle from "./Components/Login/Login";
 
 function App() {
-    const [user, setUser] = useState(null);
+    const [{ user }, dispatch] = useStateValue();
 
     return (
         <div className="app">
@@ -15,15 +22,16 @@ function App() {
                     {!user ? (
                         <Login />
                     ) : (
-                        <Switch>
-                            <Route path="/rooms">
-                                <Sidebar />
+                        <>
+                            <button className="toggleButton">afgaf</button>
+                            <Sidebar />
+                            <Switch>
                                 <Route path="/rooms/:roomId">
                                     <Chat />
                                 </Route>
-                            </Route>
-                            <Route path="/">Login</Route>
-                        </Switch>
+                                <Redirect to="/" />
+                            </Switch>
+                        </>
                     )}
                 </Router>
             </div>

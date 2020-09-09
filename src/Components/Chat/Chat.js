@@ -6,18 +6,32 @@ import Messages from "./Messages";
 import InsertEmotiocIcon from "@material-ui/icons/InsertEmoticon";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
+import firebase from "firebase";
+import { useStateValue } from "../../Redux/StateProvider";
 
 export default function Chat() {
     const { roomId } = useParams();
+    const [{ user }, dispatch] = useStateValue();
     const [roomName, setRoomName] = useState("");
     const [input, setInput] = useState("");
     const [seeds, setSeeds] = useState();
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         db.collection("room")
             .doc(roomId)
             .onSnapshot((snapShot) => {
                 setRoomName(snapShot.data().name, setSeeds(roomName));
+            });
+        db.collection("room")
+            .doc(roomId)
+            .collection("messages")
+            .orderBy("timestamp", "asc")
+            .onSnapshot((snapshot) => {
+                setMessages(
+                    snapshot.docs.map((doc) => doc.data()),
+                    console.log
+                );
             });
     }, [roomId]);
 
@@ -30,7 +44,20 @@ export default function Chat() {
                     />
                     <div className="chat__headerInfo">
                         <h3>{roomName}</h3>
-                        <p>Last seen at .......</p>
+                        <p>
+                            last seen at{" "}
+                            {new Date(
+                                messages[
+                                    messages.length - 1
+                                ]?.timestamp?.toDate()
+                            ).toLocaleDateString() +
+                                ", " +
+                                new Date(
+                                    messages[
+                                        messages.length - 1
+                                    ]?.timestamp?.toDate()
+                                ).toLocaleTimeString()}
+                        </p>
                     </div>
                 </div>
                 <div className="sidebar__headerRight">
@@ -46,17 +73,16 @@ export default function Chat() {
                 </div>
             </div>
             <div className="chat__body">
-                <Messages
-                    message="helloo"
-                    author="aniket kumar sharma"
-                    timestamp="3:52 PM"
-                    receiver
-                />
-                <Messages
-                    message="helloo"
-                    author="aniket kumar sharma"
-                    timestamp="3:52 PM"
-                />
+                {messages.map((message) => (
+                    <Messages
+                        message={message.message}
+                        author={message.author}
+                        timestamp={message.timestamp}
+                        receiver={
+                            message.author === user.displayName ? true : false
+                        }
+                    />
+                ))}
             </div>
             <div className="chat__footer">
                 <IconButton>
@@ -65,7 +91,14 @@ export default function Chat() {
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
-                        console.log(input);
+                        db.collection("room")
+                            .doc(roomId)
+                            .collection("messages")
+                            .add({
+                                message: input,
+                                author: user.displayName,
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            });
                         setInput("");
                     }}
                 >

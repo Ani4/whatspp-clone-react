@@ -5,7 +5,9 @@ export default function Messages({ message, author, timestamp, receiver }) {
         <p className={`chat__message ${receiver && "chat__messageReceiver"}`}>
             <span className="chat__messageName">{author}</span>
             {message}
-            <span className="chat__messageTime">{timestamp}</span>
+            <span className="chat__messageTime">
+                {new Date(timestamp?.toDate()).toLocaleString()}
+            </span>
         </p>
     );
 }

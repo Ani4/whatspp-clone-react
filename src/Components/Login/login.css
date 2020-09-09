@@ -13,8 +13,7 @@
     display: grid;
     place-items: center;
 }
-
-button {
+.login > button {
     cursor: pointer;
     border-radius: 5em;
     color: #fff;
