@@ -1,0 +1,130 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/whatappBackground.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: contain;
+}
+.login__body {
+    display: grid;
+    place-items: center;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #1eab523e, #25d36536);
+    border: 0;
+    padding: 1rem 2rem;
+    font-family: "Ubuntu", sans-serif;
+    border-radius: 1.5rem !important;
+    outline: none;
+    padding: 1rem 2rem !important;
+    margin: 2rem !important;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    -webkit-border-radius: 1.5rem !important;
+    -moz-border-radius: 1.5rem !important;
+    -ms-border-radius: 1.5rem !important;
+    -o-border-radius: 1.5rem !important;
+}
+
+/* /* .login {
+.main {
+    background-color: #ffffff;
+    width: 400px;
+    height: 400px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.sign {
+    padding-top: 40px;
+    color: #25d366;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.un {
+    width: 76%;
+    color: rgb(19, 99, 48);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(37, 211, 102, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: "Ubuntu", sans-serif;
+}
+
+form.form1 {
+    padding-top: 40px;
+}
+
+.pass {
+    width: 76%;
+    color: rgb(19, 99, 48);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(37, 211, 102, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.un:focus,
+.pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.submit {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #1eab51, #25d366);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: "Ubuntu", sans-serif;
+    margin-left: 35%;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+    text-shadow: 0px 0px 3px rgba(37, 211, 101, 0.435);
+    color: rgba(19, 99, 48, 0.2);
+    padding-top: 15px;
+}
+
+a {
+    text-shadow: 0px 0px 3px rgba(37, 211, 101, 0.285);
+    color: rgba(19, 99, 48, 0.2);
+    text-decoration: none;
+} */
