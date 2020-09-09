@@ -23,7 +23,9 @@ function App() {
                         <Login />
                     ) : (
                         <>
-                            <button className="toggleButton">afgaf</button>
+                            <button className="toggleButton">
+                                toggle SideBar
+                            </button>
                             <Sidebar />
                             <Switch>
                                 <Route path="/rooms/:roomId">
