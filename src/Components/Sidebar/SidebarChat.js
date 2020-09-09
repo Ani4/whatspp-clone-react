@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function SidebarChat({ addNewChat, name, id }) {
     const [randomNumber, setRandomNumber] = useState();
+    const [messages, setMessages] = useState([]);
     useEffect(() => {
         setRandomNumber(Math.random() * 5624);
     }, []);
@@ -17,6 +18,16 @@ export default function SidebarChat({ addNewChat, name, id }) {
             });
         }
     };
+    useEffect(() => {
+        if (id)
+            db.collection("room")
+                .doc(id)
+                .collection("messages")
+                .orderBy("timestamp", "desc")
+                .onSnapshot((snapshot) =>
+                    setMessages(snapshot.docs.map((doc) => doc.data()))
+                );
+    }, []);
 
     return !addNewChat ? (
         <Link style={{ textDecoration: "none" }} to={`/rooms/${id}`}>
@@ -26,7 +37,7 @@ export default function SidebarChat({ addNewChat, name, id }) {
                 />
                 <div className="sidebarChat__info">
                     <h3>{name}</h3>
-                    <p>Last seen at .......</p>
+                    <p>{messages[0]?.message}</p>
                 </div>
             </div>
         </Link>
